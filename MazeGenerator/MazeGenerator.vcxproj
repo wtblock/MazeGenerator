@@ -188,6 +188,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="CollectionBase.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MazeGenerator.h" />
@@ -199,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="MazeGeneratorDoc.cpp" />
