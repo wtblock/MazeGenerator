@@ -541,10 +541,16 @@ public:
 
 // protected methods
 protected:
-	// create document
+	// create document using the DateAndTime property to define a random seed
 	void CreateDocument();
 
 	// visit the cells and build the maze
+	// Given a current cell coordinates as a parameter,
+	// Mark the current cell as visited
+	// While the current cell has any unvisited neighbor cells
+	//   Choose one of the unvisited neighbors
+	//   Remove the wall between the current cell and the chosen cell
+	//   Invoke the routine recursively for a chosen cell
 	bool VisitCells( int nRow, int nCol );
 
 	DECLARE_MESSAGE_MAP()

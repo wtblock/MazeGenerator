@@ -39,7 +39,7 @@ CMazeGeneratorDoc::~CMazeGeneratorDoc()
 }
 
 ///////////////////////////////////////////////////////////////////////////
-	// create document
+// create document using the DateAndTime property to define a random seed
 void CMazeGeneratorDoc::CreateDocument()
 {
 	COleDateTime oDT = DateAndTime;
@@ -116,7 +116,7 @@ BOOL CMazeGeneratorDoc::OnNewDocument()
 // While the current cell has any unvisited neighbor cells
 //   Choose one of the unvisited neighbors
 //   Remove the wall between the current cell and the chosen cell
-//   Invoke the routine recursively for a chosen cell
+//   Invoke the routine recursively for the chosen cell coordinates
 bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 {
 	CGrid* pGrid = Grid;
@@ -143,6 +143,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 					break;
 				}
 
+				// access the cell above the top
 				CCell* pCell = pGrid->Cell[ nRow - 1 ][ nCol ];
 				if ( pCell->Visited )
 				{
@@ -153,6 +154,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 				pCurrent->Top = false;
 				pCell->Bottom = false;
 
+				// recurse to the cell above the top
 				VisitCells( nRow - 1, nCol );
 				break;
 			}
@@ -164,6 +166,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 					break;
 				}
 
+				// access the cell to the right of the current cell
 				CCell* pCell = pGrid->Cell[ nRow ][ nCol + 1 ];
 				if ( pCell->Visited )
 				{
@@ -174,6 +177,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 				pCurrent->Right = false;
 				pCell->Left = false;
 
+				// recurse to the cell right of the current cell
 				VisitCells( nRow, nCol + 1 );
 				break;
 			}
@@ -185,7 +189,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 					break;
 				}
 
-				// get the cell below
+				// access the cell below the current cell
 				CCell* pCell = pGrid->Cell[ nRow + 1 ][ nCol ];
 				if ( pCell->Visited )
 				{
@@ -196,6 +200,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 				pCurrent->Bottom = false;
 				pCell->Top = false;
 
+				// recurse to the cell below the current cell
 				VisitCells( nRow + 1, nCol );
 				break;
 			}
@@ -207,7 +212,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 					break;
 				}
 
-				// get the cell to the left
+				// access the cell to the left of the current cell
 				CCell* pCell = pGrid->Cell[ nRow ][ nCol - 1 ];
 				if ( pCell->Visited )
 				{
@@ -218,6 +223,7 @@ bool CMazeGeneratorDoc::VisitCells( int nRow, int nCol )
 				pCurrent->Left = false;
 				pCell->Right = false;
 				
+				// recurse to the cell to the left of the current cell
 				VisitCells( nRow, nCol - 1 );
 			}
 		}
