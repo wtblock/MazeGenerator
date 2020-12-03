@@ -197,7 +197,7 @@ protected:
 };
 
 #ifndef _DEBUG  // debug version in MazeGeneratorView.cpp
-inline CMazeGeneratorDoc* CMazeGeneratorView::Document const
+inline CMazeGeneratorDoc* CMazeGeneratorView::GetDocument() const
    { return reinterpret_cast<CMazeGeneratorDoc*>(m_pDocument); }
 #endif
 
